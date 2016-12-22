@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -64,7 +65,10 @@ public class LoggingDatabaseMetaDataInvocationHandler implements InvocationHandl
 			
 			final UUID logId = UUID.randomUUID();
 			final long start = System.nanoTime();
-			PerfLogger.logBeforeStatement(connectionId, logId, (String) method.getName(), StatementType.METADATA,
+			String logInfo = null;
+			if (args == null) logInfo = (String) method.getName() + "()";
+			else 			  logInfo = (String) method.getName() + "(" + Arrays.toString(args) + ")";
+			PerfLogger.logBeforeStatement(connectionId, logId, logInfo, StatementType.METADATA,
 					0, wrappedMetadata.getConnection().getAutoCommit());
 			Throwable exc = null;
 			try {
@@ -86,7 +90,10 @@ public class LoggingDatabaseMetaDataInvocationHandler implements InvocationHandl
     protected final ResultSet internalExecuteGetSchemas(final Method method, final Object[] args) throws Throwable {
         final UUID logId = UUID.randomUUID();
         final long start = System.nanoTime();
-        PerfLogger.logBeforeStatement(connectionId, logId, (String) method.getName(), StatementType.METADATA,
+		String logInfo = null;
+		if (args == null) logInfo = (String) method.getName() + "()";
+		else 			  logInfo = (String) method.getName() + "(" + Arrays.toString(args) + ")";
+		PerfLogger.logBeforeStatement(connectionId, logId, logInfo, StatementType.METADATA,
                 0, wrappedMetadata.getConnection().getAutoCommit());
         Throwable exc = null;
         try {
@@ -105,7 +112,10 @@ public class LoggingDatabaseMetaDataInvocationHandler implements InvocationHandl
     protected final ResultSet internalExecuteGetTables(final Method method, final Object[] args) throws Throwable {
         final UUID logId = UUID.randomUUID();
         final long start = System.nanoTime();
-        PerfLogger.logBeforeStatement(connectionId, logId, (String) method.getName(), StatementType.METADATA,
+		String logInfo = null;
+		if (args == null) logInfo = (String) method.getName() + "()";
+		else 			  logInfo = (String) method.getName() + "(" + Arrays.toString(args) + ")";
+		PerfLogger.logBeforeStatement(connectionId, logId, logInfo, StatementType.METADATA,
                 0, wrappedMetadata.getConnection().getAutoCommit());
         Throwable exc = null;
         try {
@@ -124,7 +134,10 @@ public class LoggingDatabaseMetaDataInvocationHandler implements InvocationHandl
     protected final ResultSet internalExecuteGetColumns(final Method method, final Object[] args) throws Throwable {
         final UUID logId = UUID.randomUUID();
         final long start = System.nanoTime();
-        PerfLogger.logBeforeStatement(connectionId, logId, (String) method.getName(), StatementType.METADATA,
+		String logInfo = null;
+		if (args == null) logInfo = (String) method.getName() + "()";
+		else 			  logInfo = (String) method.getName() + "(" + Arrays.toString(args) + ")";
+		PerfLogger.logBeforeStatement(connectionId, logId, logInfo, StatementType.METADATA,
                 0, wrappedMetadata.getConnection().getAutoCommit());
         Throwable exc = null;
         try {
